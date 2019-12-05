@@ -99,9 +99,17 @@ class IntCode {
   getAddress(i) { return this.vals[i] };
 }
 
+const day5test1 = () => new IntCode(1).run();
+const day5test2 = () => new IntCode(5).run();
+
 module.exports = {
   IntCode,
-  test1: () => new IntCode(1).run(),
-  test2: () => new IntCode(5).run(),
-
+  day5test1,
+  day5test2,
+  day5runTests: () => {
+    console.log('-- day5 test 1--');
+    day5test1();
+    console.log('--test 2--');
+    day5test2();
+  }
 };
