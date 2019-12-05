@@ -14,6 +14,8 @@
   },
   "dependencies": {},
   "scripts": {
-    "day5": "node -e const d5 = require('./day5intcode'); console.log('--test 1--'); d5.test1(); console.log('--test 2--'); d5.test2()"
+    "day4": "node -e \"require('./day4passwd').day4runTests();\"",
+    "day5": "node -e \"require('./day5intcode').day5runTests();\"",
+    "start": "node -e \"require('./index').runAllTests();\""
   }
 }
