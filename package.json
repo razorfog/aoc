@@ -1,0 +1,19 @@
+{
+  "name": "adventofcode19",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Advent of code 2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jim Schumacher",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.5"
+  },
+  "dependencies": {},
+  "scripts": {
+    "day5": "node -e "const d5 = require('./day5intcode'); console.log('--test 1--'); d5.test1(); console.log('--test 2--'); d5.test2()"
+  }
+}
