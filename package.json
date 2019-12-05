@@ -14,6 +14,6 @@
   },
   "dependencies": {},
   "scripts": {
-    "day5": "node -e "const d5 = require('./day5intcode'); console.log('--test 1--'); d5.test1(); console.log('--test 2--'); d5.test2()"
+    "day5": "node -e const d5 = require('./day5intcode'); console.log('--test 1--'); d5.test1(); console.log('--test 2--'); d5.test2()"
   }
 }
