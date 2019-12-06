@@ -56,22 +56,24 @@ class WireMap {
     );
     this.wire1 = wires[0];
     this.wire2 = wires[1];
-    this.crossings = {} // points
-    this.graph = {}; // collection of Points.
+    this.crossings = new Map();
+    this.graph = new Map(); // collection of Points.
   }
 
   addCrossing(p) {
-    if (!this.crossings[p.hash]) {
-      this.crossings[p.hash] = p;
+    if (!this.crossings.has(p.hash)) {
+      this.crossings.set(p.hash, p);
     }
   }
 
   getPoint(x, y) {
     const hash = Point.pointHash(x,y);
-    let p = this.graph[hash];
-    if (!p) {
+    let p;
+    if (!this.graph.has(hash)) {
       p = new Point(x,y);
-      this.graph[hash] = p;
+      this.graph.set(hash, p);
+    } else {
+      p = this.graph.get(hash);
     }
     return p;
   }
@@ -118,7 +120,7 @@ class WireMap {
     let closest = Number.MAX_SAFE_INTEGER;
     let shortest = closest;
 
-    _.forEach(this.crossings, p => {
+    for (let p of this.crossings.values()) {
       const length = p.w1steps + p.w2steps;
       if (length < shortest) {
         shortest = length;
@@ -127,7 +129,7 @@ class WireMap {
       if (distance < closest) {
         closest = distance;
       }
-    });
+    }
     return {closest, shortest};
   }
 }
