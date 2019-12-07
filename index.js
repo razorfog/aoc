@@ -1,15 +1,16 @@
 'use strict';
 const _ = require('lodash');
+const fs = require('fs');
 const aocUtils = require('./aocUtils');
-const day5 = require('./day5intcode');
-const day4 = require('./day4passwd');
-const day3 = require('./day3wires');
-const day2 = require('./day2intcode');
 
-module.exports = _.assign(aocUtils, day2, day3, day4, day5);
+module.exports = aocUtils;
+const fileRe = /day[0-9]+.*\.js$/;
+fs.readdirSync(__dirname)
+  .filter(f => fileRe.test(f))
+  .forEach(f => _.assign(module.exports, require(__dirname + '/' + f)));
 
 const allTests = _.pick(module.exports, _.keys(module.exports).filter(k => k.endsWith('runTests')));
 
 module.exports.runAllTests = () => {
   _.keys(allTests).forEach(t => allTests[t]());
-}
+};
