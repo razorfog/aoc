@@ -1,5 +1,5 @@
 # day1.py
-
+import sys
 
 def part1(report):
     with open(report) as f:
@@ -46,11 +46,9 @@ def part2(report):
     else:
         print('Drag, didn\'t find it.')
 
-
 if __name__ == '__main__':
-    print("SK data")
-    part1('./day1input_sk.txt')
-    part2('./day1input_sk.txt')
-    print("zap data")
-    part1('./day1input.txt')
-    part2('./day1input.txt')
+    reports = sys.argv[1::] if len(sys.argv) > 1 else ['./day1input.txt']
+    for rep in reports:
+        print(f'=== {rep} ===')
+        part1(rep)
+        part2(rep)
