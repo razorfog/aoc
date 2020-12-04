@@ -14,10 +14,9 @@ def validate_height(a):
     scale = m.group(2)
     if scale == 'cm':
         return h >= 150 and h <= 193
-    elif scale == 'in':
-        return h >= 59 and h <= 76
-    else:
-        print(f'invalid scale: {scale}')
+    # scale == 'in':
+    return h >= 59 and h <= 76
+
 
 required_fields = dict(
     byr=lambda a: dig4.match(a) and int(a) >=  1920 and int(a) <= 2002,  #  (Birth Year)
@@ -59,7 +58,6 @@ def part2(passports):
             if not validator(pport.get(required, '')):
                 invalids += 1
                 break
-
     return len(passports) - invalids
 
 
