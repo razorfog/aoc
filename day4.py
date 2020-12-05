@@ -1,5 +1,5 @@
-import sys
 import re
+from aocday import AocDay
 
 dig4 = re.compile(r'^\d{4}$')
 height = re.compile(r'^(\d+)(cm|in)$')
@@ -17,9 +17,8 @@ def validate_height(a):
     # scale == 'in':
     return h >= 59 and h <= 76
 
-
 required_fields = dict(
-    byr=lambda a: dig4.match(a) and int(a) >=  1920 and int(a) <= 2002,  #  (Birth Year)
+    byr=lambda a: dig4.match(a) and int(a) >= 1920 and int(a) <= 2002,  # (Birth Year)
     iyr=lambda a: dig4.match(a) and int(a) >= 2010 and int(a) <= 2020,  # (Issue Year)
     eyr=lambda a: dig4.match(a) and int(a) >= 2020 and int(a) <= 2030,  # (Expiration Year)
     hgt=validate_height,  # (Height)
@@ -28,43 +27,42 @@ required_fields = dict(
     pid=lambda a: bool(dig9.match(a)),  # (Passport ID)
     cid=lambda a: True  # (Country ID)
 )
-
 ok_missing = ['cid']
 
-def pairs_to_dict(fields):
-    return dict([tuple(re.split(r'\s*:\s*', pair)) for pair in fields if ':' in pair])
 
-def read_passports(passfile):
-    with open(passfile) as f:
-        entries = re.split(r'[\n]{2,}', f.read())
-        return [pairs_to_dict(re.split(r'\s+', entry)) for entry in entries]
+class Day4(AocDay):
 
-def part1(passports):
-    invalids = 0
-    for pport in passports:
-        for required in required_fields.keys():
-            if required not in pport and required not in ok_missing:
-                invalids += 1
-                break
-    return len(passports) - invalids
+    def __init__(self, test_file=None):
+        super().__init__(4, test_file)
 
-def part2(passports):
-    invalids = 0
-    for pport in passports:
-        for required, validator in required_fields.items():
-            if required not in pport and required not in ok_missing:
-                invalids += 1
-                break
-            if not validator(pport.get(required, '')):
-                invalids += 1
-                break
-    return len(passports) - invalids
+    def pairs_to_dict(self, fields):
+        return dict([tuple(re.split(r'\s*:\s*', pair)) for pair in fields if ':' in pair])
 
+    def read_input(self, input_file):
+        with open(input_file) as f:
+            entries = re.split(r'[\n]{2,}', f.read())
+            return [self.pairs_to_dict(re.split(r'\s+', entry)) for entry in entries]
+
+    def part1(self, passports):
+        invalids = 0
+        for pport in passports:
+            for required in required_fields.keys():
+                if required not in pport and required not in ok_missing:
+                    invalids += 1
+                    break
+        print(f'Valid passports: {len(passports) - invalids}')  # 222
+
+    def part2(self, passports):
+        invalids = 0
+        for pport in passports:
+            for required, validator in required_fields.items():
+                if required not in pport and required not in ok_missing:
+                    invalids += 1
+                    break
+                if not validator(pport.get(required, '')):
+                    invalids += 1
+                    break
+        print(f'Valid passports with validation checks: {len(passports) - invalids}')  # 140
 
 if __name__ == '__main__':
-    files = sys.argv[1::] if len(sys.argv) > 1 else ['./day4input.txt']
-    for f in files:
-        print(f'=== {f} ===')
-        pps = read_passports(f)
-        print(f'Valid passports: {part1(pps)}')  # 222
-        print(f'Valid passports via validation checks: {part2(pps)}')  # 140
+    Day4().run()
