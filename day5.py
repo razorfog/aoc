@@ -38,19 +38,18 @@ def part1(boarding_passes):
             seat_id = bp_seat_id
     return seat_id
 
-def do_adjacents_exist(row, col):
-    if (col > 0 and not seat_map[row][col-1]) or (col == 0 and (row == 0 or not seat_map[row-1][7])):
-        return False # seat ID -1 is not on the list.
-    if (col < 7 and not seat_map[row][col+1]) or (col == 7 and (row == 127 or not seat_map[row+1][0])):
-        return False  # seat ID +1 is not on the list.
-    return True
+def seat_id_exist(seat_id):
+    return 0 <= seat_id < 1024 and seat_map[seat_id >> 3][seat_id & 7]
 
 def part2():
     my_seat_id = 0
     for row, cols in enumerate(seat_map):
         for c, val in enumerate(cols):
-            if not val and do_adjacents_exist(row, c):
-                my_seat_id = row * 8 + c
+            if val:
+                continue
+            x_id = row*8 + c
+            if seat_id_exist(x_id - 1) and seat_id_exist(x_id + 1):
+                my_seat_id = x_id
                 print(f'seat at row {row}, col {c} is free. id is {my_seat_id}')
     return my_seat_id
 
@@ -58,8 +57,7 @@ if __name__ == '__main__':
     files = sys.argv[1::] if len(sys.argv) > 1 else ['./day5_input.txt']
     for f in files:
         print(f'=== {f} ===')
-        bps = read_passes(f)
-        print(f'Highest seat ID: {part1(bps)}')
+        print(f'Highest seat ID: {part1(read_passes(f))}')
         print(f'Your seat id is: {part2()}')
 
 
