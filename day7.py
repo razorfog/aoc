@@ -7,9 +7,7 @@ class Day7(AocDay):
 
     def __init__(self, test_file=None):
         super().__init__(7, test_file)
-        self.part1_bag = 'shiny gold bag'
-        self.bag_re = re.compile(r'\s*(\d+)\s+([a-z]+\s+[a-z]+)\s+bags?')
-        self.no_bag = re.compile(r'\s*no other bag')
+        self.gold_bag = 'shiny gold bag'
 
     def make_bag_rule(self, bag_line):
         [parent, children] = re.match(r'(.+?)s? contain (.+)', bag_line).groups()
@@ -43,20 +41,17 @@ class Day7(AocDay):
                 else:
                     reverse = self.reverse_rules[bag]
                     reverse.append(parent)
-        xrule = self.part1_bag
+        xrule = self.gold_bag
         print(f'bag_rules = {len(self.bag_rules)}. reverse = {len(self.reverse_rules)}')
         self.get_contained_by(xrule)
         print(f'has {xrule} = {len(self.has_gold) - 1}') # -1 cuz gold bag is in there too.
 
     def _countdepth(self, b):
-        count = 1
-        for (number, child) in self.bag_rules.get(b,[]):
-            count += number * self._countdepth(child)
-        return count
+        return 1 + sum(number * self._countdepth(child) for (number, child) in self.bag_rules[b])
 
     def part2(self, groups):
-        total = self._countdepth(self.part1_bag) -1  # -1 cuz don't count shiny gold bag
-        print(f'Bags for {self.part1_bag} is {total}')
+        total = self._countdepth(self.gold_bag) - 1  # -1 cuz don't count shiny gold bag
+        print(f'Bags for {self.gold_bag} is {total}')
 
 if __name__ == '__main__':
     Day7().run()
