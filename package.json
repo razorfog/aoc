@@ -1,0 +1,20 @@
+{
+  "name": "adventofcode19",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Advent of code 2019",
+  "main": "index.js",
+  "scripts": {
+    "day2": "node -e \"require('./day2intcode').day2runTests();\"",
+    "day3": "node -e \"require('./day3wires').day3runTests();\"",
+    "day4": "node -e \"require('./day4passwd').day4runTests();\"",
+    "day5": "node -e \"require('./day5intcode').day5runTests();\"",
+    "start": "node -e \"require('./index').runAllTests();\""
+  },
+  "author": "Jim Schumacher",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.21"
+  },
+  "dependencies": {}
+}
