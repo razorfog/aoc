@@ -1,0 +1,18 @@
+{
+  "name": "AdventofCcode2022",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Advent of code 2022",
+  "scripts": {
+    "day1": "node -e \"require('./day1').run();\"",
+    "day2": "node -e \"require('./day2').run();\"",
+    "day3": "node -e \"require('./day3').run();\"",
+    "day4": "node -e \"require('./day4').run();\""
+  },
+  "author": "Jim Schumacher",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.5"
+  },
+  "dependencies": {}
+}
