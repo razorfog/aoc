@@ -1,0 +1,20 @@
+{
+  "name": "adventofcode2021",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Advent of code 2021",
+  "scripts": {
+    "day1": "node -e \"require('./day1').run('day1-a.input');\"",
+    "day2": "node -e \"require('./day2').run('day2.input');\"",
+    "day3": "node -e \"require('./day3').run('day3.input');\"",
+    "day4": "node -e \"require('./day4').run('day4.input');\"",
+    "day5": "node -e \"require('./day5').run('day5.input');\"",
+    "day6": "node -e \"require('./day6').run('day6.input');\"",
+  },
+  "author": "Jim Schumacher",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.5"
+  },
+  "dependencies": {}
+}
