@@ -7,7 +7,7 @@
     "day1": "node -e \"require('./day1').run();\"",
     "day2": "node -e \"require('./day2').run();\"",
     "day3": "node -e \"require('./day3').run();\"",
-    "day4": "node -e \"require('./day4').run();\""
+    "day4": "node -e \"require('./day4').run();\"",
     "day5": "node -e \"require('./day5').run();\""
   },
   "author": "Jim Schumacher",
