@@ -18,7 +18,6 @@ function run(input_file = 'day6.txt') {
     firstUnique(lines[0], 14);
 }
 
-run();
 module.exports = {
     test: () => run('day6_test.txt'),
     run,
