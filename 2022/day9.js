@@ -4,8 +4,13 @@ const _ = require('lodash');
 function run(inputFile = 'day9.txt') {
   const moves = fs.readFileSync(inputFile, 'utf8').trimEnd()
     .split('\n').map(x => x.split(' ')).map(y => [y[0], Number(y[1])]);
+  const MoveMap = {
+    R: {x:1, y:0},
+    L: {x:-1, y:0},
+    U: {x:0, y:-1},
+    D: {x:0, y:1},
+  };
   const tailSpots = new Map();  // tSpots(y => Set of x);
-
   const Tail = {}; // the global tail knot.
 
   function addTailSpot(T) {
@@ -48,31 +53,11 @@ function run(inputFile = 'day9.txt') {
     }
 
     moves.forEach(([dir, steps]) => {
-      switch (dir) {
-        case 'R':
-          for (let i = 0; i < steps; i++) {
-            H.x += 1;
-            checkMoves();
-          }
-          break;
-        case 'L':
-          for (let i = 0; i < steps; i++) {
-            H.x += -1;
-            checkMoves();
-          }
-          break;
-        case 'U':
-          for (let i = 0; i < steps; i++) {
-            H.y += -1;
-            checkMoves();
-          }
-          break;
-        case 'D':
-          for (let i = 0; i < steps; i++) {
-            H.y += 1;
-            checkMoves();
-          }
-          break;
+      const delta = MoveMap[dir];
+      for (let i = 0; i < steps; i++) {
+        H.y += delta.y;
+        H.x += delta.x;
+        checkMoves();
       }
     });
   }
