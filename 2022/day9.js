@@ -19,8 +19,7 @@ function run(inputFile = 'day9.txt') {
   }
 
   function isTouching(H, T) {
-    return Math.abs(T.y - H.y) <= 1 && Math.abs(T.x - H.x) <= 1 ||
-           Math.abs(T.x - H.x) <= 1 && Math.abs(T.y - H.y) <= 1;
+    return Math.abs(T.y - H.y) <= 1 && Math.abs(T.x - H.x) <= 1 ;
   }
 
   function makeTouching(H, T) {
@@ -113,8 +112,8 @@ function run(inputFile = 'day9.txt') {
 
   part1();
   part2();
-
 }
+
 module.exports = {
   test: () => run('day9_test.txt'),
   run,
