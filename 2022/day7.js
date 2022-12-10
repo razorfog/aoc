@@ -98,7 +98,6 @@ function run(input_file = 'day7.txt') {
   console.log("Part 2. best = %d", best);
 }
 
- run('day7.txt');
 module.exports = {
   test: () => run('day7_test.txt'),
   run,
