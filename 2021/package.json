@@ -9,7 +9,7 @@
     "day3": "node -e \"require('./day3').run('day3.input');\"",
     "day4": "node -e \"require('./day4').run('day4.input');\"",
     "day5": "node -e \"require('./day5').run('day5.input');\"",
-    "day6": "node -e \"require('./day6').run('day6.input');\"",
+    "day6": "node -e \"require('./day6').run('day6.input');\""
   },
   "author": "Jim Schumacher",
   "license": "ISC",
